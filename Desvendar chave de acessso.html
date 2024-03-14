@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tradutor de Chave de Acesso NFe</title>
+    <style>
+        /* Estilos CSS para a página */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tradutor de Chave de Acesso NFe</h1>
+        <label for="chave">Insira o número da chave de acesso da NFe:</label><br>
+        <input type="text" id="chave" name="chave"><br><br>
+        <button onclick="traduzirChave()">Traduzir</button><br><br>
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        // Função para traduzir a chave de acesso
+        function traduzirChave() {
+            var chave = document.getElementById('chave').value;
+
+            // Verifica se a chave possui 44 caracteres (tamanho padrão da chave de acesso)
+            if (chave.length !== 44) {
+                alert("O número da chave de acesso deve ter 44 caracteres.");
+                return;
+            }
+
+            var cnpj = chave.substring(6, 14);
+            var filial = chave.substring(14, 18);
+            var validador = chave.substring(18, 20);
+            var numeroNFe = chave.substring(25, 34);
+            var modeloNFe = chave.substring(20, 22);
+
+            // Exibe as informações na página
+            document.getElementById('resultado').innerHTML = `
+                CNPJ identificação do emissor: ${cnpj}<br>
+                Filial: ${filial}<br>
+                Validador: ${validador}<br>
+                Número da NFe: ${numeroNFe}<br>
+                Modelo NFe: ${modeloNFe}<br>
+            `;
+        }
+    </script>
+        <style>
+            /* Estilos CSS para a página */
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: #222; /* Fundo cinza escuro */
+                color: #fff; /* Texto branco */
+            }
+            .container {
+                text-align: center;
+            }
+            label {
+                color: #ff6347; /* Detalhes em vermelho */
+            }
+            input {
+                background-color: #333; /* Fundo cinza escuro para o input */
+                color: #fff; /* Texto branco */
+                border: 1px solid #ff6347; /* Borda vermelha */
+                padding: 8px;
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+            button {
+                background-color: #ff6347; /* Botão vermelho */
+                color: #fff; /* Texto branco */
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #ff6347; /* Cor do botão ao passar o mouse */
+                opacity: 0.8;
+            }
+            #resultado {
+                margin-top: 20px;
+                padding: 10px;
+                border: 1px solid #ff6347; /* Borda vermelha */
+                border-radius: 5px;
+                background-color: #333; /* Fundo cinza escuro para o resultado */
+            }
+        </style>
+</body>
+</html>
